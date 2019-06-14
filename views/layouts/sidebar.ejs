@@ -1,26 +1,46 @@
-<ul class="sidebar navbar-nav" style="background-color:#213951;">
+
+<ul class="sidebar navbar-nav" id="sidebar" style="background-color:#213951;">
       <div style="background-color: #A0D8EF; width: 100%;">
-      <img src="/images/tecsup.jpg" class="rounded" style="width:95%;margin:2%;">
+      <img src="/images/tecsup.jpg" class="rounded" id="ocultar" style="width:95%;margin:2%;">
       </div>
+
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/panel">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="/alumnos">
           <i class="fas fa-fw fa-user-graduate"></i>
           <span>Alumnos</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="/salones">
           <i class="fas fa-fw fa-table"></i>
           <span>Salones</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="/profesor">
           <i class="fas fa-fw fa-glasses"></i>
           <span>Profesores</span></a>
       </li>
-    </ul>
+</ul>
+<img src="/images/tecsup.jpg" class="rounded" id="mostrar" style="display:none;width:5%;height: 5%;">
+<script type="text/javascript">
+  $(document).ready(function(){
+    
+      $("#ocultar").click(function(){
+      $('#mostrar').delay(100).show("1");
+      $('#ocultar').hide();
+      $('#sidebar').hide();
+     });
+
+    $("#mostrar").click(function(){
+      $('#ocultar').show();
+      $('#sidebar').show("linear");
+      $('#mostrar').hide();
+     });
+    
+  });
+</script>

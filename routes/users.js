@@ -48,10 +48,10 @@ router.post('/login', function(req, res, next) {
       console.log(req.session.mail);
       //req.session.mail.username=user.username;
       if(req.session.mail != null){
-      res.redirect('/users/panel');
+      res.redirect('/panel');
   	  }
     });
-  })(req, res, next);
+  })(req, res, next);	
 });
 
 
