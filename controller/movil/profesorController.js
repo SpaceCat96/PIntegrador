@@ -1,5 +1,5 @@
 let model = require('../../models/profesorModel');
-let model_grup = require('../../models/grupoModel');
+let grupo = require('../../models/grupoModel');
 let Cryptr = require('cryptr');
 let cryptr = new Cryptr('123456');
 
@@ -71,18 +71,17 @@ module.exports = {
 		let pass = req.body.password;
 		model.findOne({username:user},function(err,data){
 			if(err){
-				console.log("Usuario No Encontrado");
 				res.send(false);
 			}else{
-				var profe=datos._id;
+				var profe=data._id;
 				var pass_ori = cryptr.decrypt(data.password);
 				if(pass_ori == pass){
-					grupo.find({profesor_id:datos},'postulantes').exec(function(error,items){
+					grupo.find({profesor_id:profe},'postulantes').exec(function(error,items){
 						if(error){
 							console.log(error);
 							res.sendStatus(500);
 						}else{
-								res.json(items);
+								res.send(true);
 						} 
 					});
 				}else{

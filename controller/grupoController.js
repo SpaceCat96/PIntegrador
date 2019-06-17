@@ -5,23 +5,28 @@ module.exports = {
 			path: 'salon_id', select: 'nombre cantPerm'
 		}).populate({
 			path: 'profesor_id', select: 'nombre'
-		}).exec(function(err,data){
-			
+		}).exec(function(err,data){		
 			if(err){
 				console.log(err);
 				res.sendStatus(500);
 			}else{
-				/**var name = req.session.mail.username;
+				let date = {
+					"nombre": "A",
+			        "salon_id": {
+			            "_id": "5d071376b32e9423b85c4e70",
+			            "nombre": "404",
+			            "cantPerm": 20
+			        }
+				}
+				var name = req.session.mail.username;
 			    var finalName = name.substring(0, 1).toUpperCase() + name.substring(1)
-			    res.render("salones/index",{datos: data},function(err,html){
-			    	console.log(data);
+			    res.render("salones/index",{datos: date},function(err,html){
 					if(err) throw err;
 					res.render("layouts/layout",{
 						section: html,
 						tituloSeccion: "Salones"
 					 	});
-				});**/
-				res.send(data);
+				});
 			}
 		});
 	},
