@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "start": "pm2 start ./bin/www"
-  },  
+  },
   "dependencies": {
     "cookie-parser": "~1.4.3",
+    "cryptr": "^4.0.2",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "enigma-code": "0.0.11",

@@ -4,7 +4,6 @@ var Account = require('../models/account');
 
 var router = express.Router();
 
-/* GET users listing. */
 router.get('/', function(req, res, next) {
 	var mensaje="";
 	res.render('user/login',{mensaje});
@@ -31,12 +30,6 @@ router.get('/login', function(req, res,next) {
     }
 });
 
-/**router.post('/login', passport.authenticate('local', {failureRedirect: '/users/error'}), function(req, res) {
-    req.session.mail=req.user;
-    if(req.session.mail != null){
-    	res.redirect("/users/panel");
-	}
-});**/
 
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
@@ -54,7 +47,6 @@ router.post('/login', function(req, res, next) {
   })(req, res, next);	
 });
 
-
 router.get('/logout', function(req, res,next) {
 	req.session.destroy();
     req.logout();
@@ -62,15 +54,6 @@ router.get('/logout', function(req, res,next) {
 });
 
 router.get('/panel', function(req, res, next) {
-
-/**res.render("user/index",{lista:data},function(err,html){
-				if(err) throw err;
-				res.render("user/layout",{
-					section: htfml,
-					tituloSeccion: "Lista de Noticias"
-				 	});
-				});**/
-
     if (req.session.mail) {
       var name = req.session.mail.username;
       var finalName = name.substring(0, 1).toUpperCase() + name.substring(1)

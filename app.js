@@ -10,6 +10,9 @@ var mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var profesorRouter = require('./routes/profesor');
+var salonRouter = require('./routes/salon');
+var grupoRouter = require('./routes/grupo');
+var movilRouter = require('./routes/movil');
 
 var app = express();
 
@@ -32,6 +35,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/profesor',profesorRouter);
+app.use('/salon',salonRouter);
+app.use('/grupo',grupoRouter);
+
+//Movil
+app.use('/m', movilRouter);
 
 
 var Account = require('./models/account');

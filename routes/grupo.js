@@ -1,15 +1,18 @@
 var express = require('express');
 var router = express.Router();
+var controller = require('../controller/grupoController');
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  var mensaje="";
-  res.render('alumnos/index',{mensaje});
+	controller.show(req,res);
 });
 
+router.post('/',function(req,res,next){
+	controller.create(req,res);
+})
 
-
-
-
+router.post('/postulante',function(req,res,next){
+	controller.addpostu(req,res);
+})
 
 module.exports = router;
+		

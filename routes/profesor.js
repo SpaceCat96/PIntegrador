@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var controller = require('../controller/profesorController');
-/* GET home page. */
+
 router.get('/', function(req, res, next) {
  
   if (req.session.mail) {
@@ -22,6 +22,10 @@ router.post('/auth',function(req,res,next){
 
 router.post('/genurl',function(req,res,next){
 	controller.genurl(req,res);
+});
+
+router.post('/prueba',function(req,res,next){
+	controller.body(req,res);
 });
 
 router.post('/restablecer',function(req,res,next){

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var controller = require('../controller/profesorController');
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
   var mensaje="";
   if (req.session.mail) {

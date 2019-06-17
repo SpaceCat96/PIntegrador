@@ -1,4 +1,4 @@
-let model = require('../models/grupoModel');
+let model = require('../../models/grupoModel');
 module.exports = {
 	show : function(req,res){
 		model.find({}).populate({
@@ -11,17 +11,7 @@ module.exports = {
 				console.log(err);
 				res.sendStatus(500);
 			}else{
-				/**var name = req.session.mail.username;
-			    var finalName = name.substring(0, 1).toUpperCase() + name.substring(1)
-			    res.render("salones/index",{datos: data},function(err,html){
-			    	console.log(data);
-					if(err) throw err;
-					res.render("layouts/layout",{
-						section: html,
-						tituloSeccion: "Salones"
-					 	});
-				});**/
-				res.send(data);
+				res.json(data);
 			}
 		});
 	},
@@ -32,7 +22,7 @@ module.exports = {
 				console.log(err);
 				res.sendStatus(500);
 			}else{
-				res.send(data);
+				res.json(data);
 			}
 		});
 	},
@@ -47,22 +37,23 @@ module.exports = {
 				console.log(err);
 				res.send(err);
 			}else{
-				res.send(newData);
+				res.json(newData);
 			}
 		});
 	},
 	update: function(req,res){
 		let val_id = req.body.id;
 		let datos = {
-			nombre : req.body.nombre,
-			cantPerm : req.body.cant
+			'nombre' :req.body.nombre,
+			'salon_id' : req.body.salon_id,
+			'profesor_id' :req.body.profesor_id
 		};
 		model.updateOne({_id:val_id},datos,function(err,newData){
 			if(err){
 				console.log(err);
 				res.sendStatus(500);
 			}else{
-				res.send(newData);
+				res.json(newData);
 			}
 		});
 	},
@@ -72,9 +63,7 @@ module.exports = {
 			'p_codigo': req.body.codigo,
 			'p_nombre': req.body.nombre,
 			}
-	  	model.findOneAndUpdate(
-	   { _id:val_id}, 
-	   { $push: { postulantes: data  } },
+	  	model.findOneAndUpdate({ _id:val_id},{ $push: { postulantes: data } },
 	   function (err, success) {	
 	        if (err) {
 	            console.log(err);
@@ -85,5 +74,14 @@ module.exports = {
 	    });
 	},
 	delete: function(req,res){
+		let val_id = req.body.id;
+		model.deleteOne({_id:val_id}, function (err) {
+			if (err) {
+	            console.log(err);
+				res.sendStatus(500);
+	        } else {
+	            res.send(true);
+	        }
+		});
 	}
 };

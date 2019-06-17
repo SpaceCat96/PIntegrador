@@ -1,9 +1,9 @@
-//noticiaModel.js
+
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let modelSchema = new Schema({
-	nombre : { type: String , required: true }
+	nombre : { type: String , required: true ,unique: true },
 	profesor_id : { type: Schema.ObjectId, ref: 'profesor' },
 	salon_id : { type: Schema.ObjectId, ref: 'salon'},
 	postulantes: [{
