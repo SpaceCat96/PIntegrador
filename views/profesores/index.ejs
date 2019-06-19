@@ -5,13 +5,69 @@ Agregar
 
 <% datos.forEach(function(item){%>
 <div class="card" style="width: 14rem;float: left;height: 11rem;margin:1%;margin-right: 2%;">
+  <button id="Modal12" class="close" data-toggle="modal" data-target="#Modal2<%=item._id%>" >
+          <span aria-hidden="true">&times;</span>
+  </button>
   <div class="card-body">
     <h5 class="card-title"><%=item.nombre%></h5>
     <p class="card-text"><%=item.username%></p>
-    <button id="Modal12" class="card-link">Modificar</button>
-    <a href="#" class="card-link">Eliminar</a>
+    <button id="Modal12" class="card-link" data-toggle="modal" data-target="#modalSubscriptionForm<%=item._id%>">Modificar</button>
   </div>
 </div>
+
+<div class="modal fade" id="modalSubscriptionForm<%=item._id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form method="post" action="/profesor/editar">
+      <input type="hidden" name="id" value="<%=item._id%>">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Modificar</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <label data-error="wrong" data-success="right" for="form3">Nombre</label>
+          <input type="text" id="form3" class="form-control validate" name="nombre" value="<%=item.nombre%>" maxlength="100">     
+        </div>
+        <div class="md-form mb-4">
+          <label data-error="wrong" data-success="right" for="form2">Codigo</label>
+          <input type="text" id="form2" class="form-control" name="codigo" value="<%=item.username%>" maxlength="20">
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <input type="submit" name="" value="Modificar" class="btn btn-secondary">
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="Modal2<%=item._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¿Desea Eliminar?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="/profesor/delete">
+          <input type="hidden" name="id" value="<%=item._id%>">
+          <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+           <input type="submit" value="Aceptar" class="btn btn-primary">
+          </div>
+        </form>
+      </div> 
+    </div>
+  </div>
+</div>
+
 <%})%>
 
 

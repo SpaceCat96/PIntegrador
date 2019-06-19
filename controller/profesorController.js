@@ -7,7 +7,6 @@ let cryptr = new Cryptr('123456');
 module.exports = {
 	show : function(req,res){
 		model.find({}).exec(function(err,data){
-			
 			if(err){
 				console.log(err);
 				res.sendStatus(500);
@@ -19,11 +18,10 @@ module.exports = {
 					if(err) throw err;
 					res.render("layouts/layout",{
 						section: html,
-						tituloSeccion: "Salones"
+						tituloSeccion: "Profesores"
 					 	});
 				});
 			}
-
 		});
 	},
 	detail : function(req,res){
@@ -64,12 +62,20 @@ module.exports = {
 				console.log(err);
 				res.sendStatus(500);
 			}else{
-				res.send(newData);
+				res.redirect('/profesor');
 			}
 		});
 	},
 	delete: function(req,res){
-
+		let val_id = req.body.id;
+		model.deleteOne({_id:val_id},function(err){
+			if(err){
+				console.log(err);
+				res.sendStatus(500);
+			}else{
+				res.redirect('/profesor');
+			}
+		});
 	},
 	credenciales: function(req,res){
 		console.log(req.body.username);
@@ -101,7 +107,6 @@ module.exports = {
 			}	
 		});
 	},
-
 	genurl:function(req,res){
 		let user = req.body.username;
 		var con;

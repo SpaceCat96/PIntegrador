@@ -5,27 +5,48 @@ module.exports = {
 			path: 'salon_id', select: 'nombre cantPerm'
 		}).populate({
 			path: 'profesor_id', select: 'nombre'
-		}).exec(function(err,data){		
+		}).exec(function(err,items){		
 			if(err){
 				console.log(err);
 				res.sendStatus(500);
 			}else{
-				let date = {
-					"nombre": "A",
-			        "salon_id": {
-			            "_id": "5d071376b32e9423b85c4e70",
-			            "nombre": "404",
-			            "cantPerm": 20
-			        }
-				}
 				var name = req.session.mail.username;
-			    var finalName = name.substring(0, 1).toUpperCase() + name.substring(1)
-			    res.render("salones/index",{datos: date},function(err,html){
+			    var finalName = name.substring(0, 1).toUpperCase() + name.substring(1);
+			    console.log("------------");
+			    console.log("-------------");
+			   
+				console.log(items);
+			    res.render("salones/grupo",{items},function(err,html){
 					if(err) throw err;
 					res.render("layouts/layout",{
 						section: html,
 						tituloSeccion: "Salones"
-					 	});
+					});
+				});
+			}
+		});
+	},
+	alumnoshow : function(req,res){
+		model.find({},'postulantes').exec(function(err,items){		
+			if(err){
+				console.log(err);
+				res.sendStatus(500);
+				console.log(items);
+			}else{
+				var name = req.session.mail.username;
+			    var finalName = name.substring(0, 1).toUpperCase() + name.substring(1);
+			    console.log("------------");
+			    console.log("-------------");
+			   
+				console.log(items);
+				res.json(items);
+
+				res.render("alumnos/index",{items},function(err,html){
+					if(err) throw err;
+					res.render("layouts/layout",{
+						section: html,
+						tituloSeccion: "Alumnos"
+					});
 				});
 			}
 		});
@@ -85,7 +106,7 @@ module.exports = {
 	            console.log(err);
 				res.sendStatus(500);
 	        } else {
-	            res.send(success);
+	            res.redirect("/salon");
 	        }
 	    });
 	},

@@ -71,19 +71,22 @@ module.exports = {
 		let pass = req.body.password;
 		model.findOne({username:user},function(err,data){
 			if(err){
+
 				res.send(false);
 			}else{
+				
 				var profe=data._id;
 				var pass_ori = cryptr.decrypt(data.password);
 				if(pass_ori == pass){
-					grupo.find({profesor_id:profe},'postulantes').exec(function(error,items){
+					/**grupo.find({profesor_id:profe},'postulantes').exec(function(error,items){
 						if(error){
 							console.log(error);
 							res.sendStatus(500);
-						}else{
-								res.send(true);
+						}else{	
+								res.send(items._id);
 						} 
-					});
+					});**/
+					res.send(data._id);
 				}else{
 					res.send(false)
 				}	

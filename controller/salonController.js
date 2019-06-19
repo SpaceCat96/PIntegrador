@@ -9,6 +9,7 @@ module.exports = {
 			}else{
 				var name = req.session.mail.username;
 			    var finalName = name.substring(0, 1).toUpperCase() + name.substring(1)
+			    
 			    res.render("salones/index",{datos: data},function(err,html){
 			    	console.log(data);
 					if(err) throw err;
@@ -41,7 +42,7 @@ module.exports = {
 				console.log(err);
 				res.sendStatus(500);
 			}else{
-				res.send(newData);
+				res.redirect("/salon/lista");
 			}
 		});
 	},
@@ -49,14 +50,14 @@ module.exports = {
 		let val_id = req.body.id;
 		let datos = {
 			nombre : req.body.nombre,
-			cantPerm : req.body.cant
+			cantPerm : req.body.cantPerm
 		};
 		model.updateOne({_id:val_id},datos,function(err,newData){
 			if(err){
 				console.log(err);
 				res.sendStatus(500);
 			}else{
-				res.send(newData);
+				res.redirect("/salon/lista");
 			}
 		});
 	},

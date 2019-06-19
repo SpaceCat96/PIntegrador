@@ -61,7 +61,7 @@ router.get('/panel', function(req, res, next) {
 				if(err) throw err;
 				res.render("layouts/layout",{
 					section: html,
-					tituloSeccion: "Inicio",
+					tituloSeccion: "background-image:url('/images/fondo.jpeg');",
 					user: finalName	
 				 	});
 				});
