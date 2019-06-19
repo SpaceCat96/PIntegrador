@@ -9,7 +9,7 @@ module.exports = {
 			if(err){
 				console.log(err);
 				res.sendStatus(500);
-			}else{	S
+			}else{	
 				res.json(data);
 			}
 		});
