@@ -97,7 +97,7 @@ module.exports = {
 					res.redirect("/?mensaje=Duplicado");
 				}
 			}else{
-				res.redirect("/");
+				res.redirect("/salon");
 			}
 		});
 	},
