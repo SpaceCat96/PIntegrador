@@ -14,7 +14,9 @@ router.post('/profesores/crear', function(req, res, next) {
 router.post('/profesores', function(req, res, next) {
 	prof_controller.credenciales(req,res)
 });
-
+router.post('/profesores/alumnos',function(req,res,next){
+	prof_controller.getalumnos(req,res);
+});
 
 //salon
 router.get('/salones', function(req, res, next) {

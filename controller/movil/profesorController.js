@@ -68,11 +68,12 @@ module.exports = {
 	},
 	getalumnos:function(req,res){
 		let val_id = req.body.id;
-		grupo.find({profesor_id:val_id},'postulantes').exec(function(err,data){			
+		console.log(val_id);
+		grupo.findOne({profesor_id:val_id},'postulantes').exec(function(err,data){			
 			if(err){
 				console.log(err);
 				res.sendStatus(500);
-			}else{	
+			}else{		
 				res.json(data);
 			}
 		});
