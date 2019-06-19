@@ -24,6 +24,13 @@ router.post('/auth',function(req,res,next){
 		res.redirect('/');
 	}
 });
+router.post('/alumnos',function(req,res,next){
+	if (req.session.mail) {
+		controller.getalumnos(req,res);
+	}else{
+		res.redirect('/');
+	}
+});
 router.post('/delete',function(req,res,next){
 	if (req.session.mail) {
 		controller.delete(req,res);
