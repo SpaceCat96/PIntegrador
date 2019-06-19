@@ -4,14 +4,16 @@ Agregar
 <hr>
 
 <% datos.forEach(function(item){%>
-<div class="card" style="width: 14rem;float: left;height: 11rem;margin:1%;margin-right: 2%;">
+<div class="card" style="width: 14rem;float: left;height: 13rem;margin:1%;margin-right: 2%;">
   <button id="Modal12" class="close" data-toggle="modal" data-target="#Modal2<%=item._id%>" >
           <span aria-hidden="true">&times;</span>
   </button>
-  <div class="card-body">
-    <h5 class="card-title"><%=item.nombre%></h5>
-    <p class="card-text"><%=item.username%></p>
-    <button id="Modal12" class="card-link" data-toggle="modal" data-target="#modalSubscriptionForm<%=item._id%>">Modificar</button>
+  <div class="card-body" style="text-align: center;">
+    <h5 class="card-title" style="color: #327E7E"><%=item.nombre%></h5>
+    <hr>
+    <p class="card-text" style="color: #064747"><%=item.username%></p>
+    <a id="Modal12" class="card-link" data-toggle="modal" data-target="#modalSubscriptionForm<%=item._id%>"><i class="fas fa-fw fa-edit"></i></a>
+    <hr>
   </div>
 </div>
 

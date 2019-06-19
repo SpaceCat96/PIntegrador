@@ -1,0 +1,33 @@
+<%
+  if(req.params.mensaje){
+  var mensaje= req.params.memsaje;
+%>
+  <p style="color: #ED0000;text-align: center; background-color: rgb(255, 217, 0,0.9); border-radius: 15px;"><%=mensaje%></p>
+<%
+  }
+%>
+
+<form method="post" action="/grupo">
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Nombre:</label>
+    <input type="text" class="form-control" name="nombre" id="exampleFormControlInput1" placeholder="A" maxlength="5" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Profesores:</label>
+    <select class="form-control" id="exampleFormControlSelect1" name="profesor_id">
+      <% datos.forEach(function(item){%>
+      <option value="<%=item._id%>"><%=item.nombre%></option>
+      <%});%>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect2">Salones:</label>
+    <select class="form-control" id="exampleFormControlSelect1" name="salon_id">
+      <% items.forEach(function(item){%>
+      <option value="<%=item._id%>"><%=item.nombre%></option>
+      <%});%>
+    </select>
+  </div>
+
+  <input type="submit" class="btn btn-secundary" value="Agregar Grupo">
+</form>

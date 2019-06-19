@@ -9,7 +9,7 @@ module.exports = {
 			if(err){
 				console.log(err);
 				res.sendStatus(500);
-			}else{	
+			}else{	S
 				res.json(data);
 			}
 		});
@@ -88,7 +88,7 @@ module.exports = {
 					});**/
 					res.send(data._id);
 				}else{
-					res.send(false)
+					res.send(false);
 				}	
 			}	
 		});

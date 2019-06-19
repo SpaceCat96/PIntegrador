@@ -1,4 +1,7 @@
 let model = require('../models/grupoModel');
+let salon = require('../models/salonModel');
+let profe = require('../models/profesorModel');
+
 module.exports = {
 	show : function(req,res){
 		model.find({}).populate({
@@ -20,7 +23,7 @@ module.exports = {
 					if(err) throw err;
 					res.render("layouts/layout",{
 						section: html,
-						tituloSeccion: "Salones"
+						tituloSeccion: "Grupos"
 					});
 				});
 			}
@@ -37,9 +40,6 @@ module.exports = {
 			    var finalName = name.substring(0, 1).toUpperCase() + name.substring(1);
 			    console.log("------------");
 			    console.log("-------------");
-			   
-				console.log(items);
-				res.json(items);
 
 				res.render("alumnos/index",{items},function(err,html){
 					if(err) throw err;
@@ -62,6 +62,27 @@ module.exports = {
 			}
 		});
 	},
+	newgroup:function(req,res){
+		salon.find({}).exec(function(err,items){		
+			if(err){
+				console.log(err);
+				res.sendStatus(500);
+			}else{
+				profe.find({}).exec(function(err,datos){
+					console.log(items);
+					console.log("-----------");
+					console.log(datos);
+					res.render("salones/newgroup",{items,datos},function(err,html){
+						if(err) throw err;
+						res.render("layouts/layout",{
+							section: html,
+							tituloSeccion: "Nuevo Grupo"
+						 });
+					});
+				});
+			}
+		});
+	},
 	create: function(req,res){
 		let obj = new model;
 		console.log(req.body.nombre);
@@ -71,9 +92,12 @@ module.exports = {
 		obj.save(function(err,newData){
 			if(err){
 				console.log(err);
-				res.send(err);
+				if(err.code == 11000)
+				{
+					res.redirect("/?mensaje=Duplicado");
+				}
 			}else{
-				res.send(newData);
+				res.redirect("/");
 			}
 		});
 	},
