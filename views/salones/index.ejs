@@ -3,16 +3,54 @@ Agregar
 </button>
 <hr><div style="width:100%;">
 <% datos.forEach(function(item){%>
-<div class="card" style="width: 14.3em;float: left;height: 11rem;margin:1%;margin-right: 2%;border-color: #98989B;">
-  <div class="card-body">
+<div class="card" style="width: 14.3em;float: left;height: 13rem;margin:1%;margin-right: 2%;border-color: #98989B;">
+  <div class="card-body"> 
     <div style="text-align: center;border: 1px solid #D9D9E3;width: 40%;border-radius: 7%;font-style: inherit;"> Aula : <%=item.nombre%></div>
     <br>
-    <div style="text-align: center;border: 3px solid #565050;width: 38%;margin:auto;border-radius: 10%;">
-    <h5 class="card-title" style="font-size: 20px;color: #644158;"><%=item.cantPerm%></h5>
+    <div style="text-align: center;border: 3px solid #565050;width: 35%;margin:auto;border-radius: 10%;">
+    <h5 class="card-title" style="font-size: 20px;color: #644158; margin-top:   7px;"><%=item.cantPerm%></h5>
+
+    </div>
+    <hr>
+    <div style="margin:auto;">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#Modal2<%=item._id%>" data-whatever="@getbootstrap"><i class="fas fa-fw fa-edit"></i></button>
     </div>
     <hr>
   </div>
 </div>
+
+<div class="modal fade" id="Modal2<%=item._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificar Salon</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="/salon/editar">
+          <input type="hidden" name="id" value="<%=item._id%>">
+          <div class="form-group">
+            <label for="txtNombre" class="col-form-label">Nombre:</label>
+            <input type="text" class="form-control" id="txtNombre" name="nombre" maxlength="8" value="<%=item.nombre%>">
+          </div>
+          <div class="form-group">
+            <label for="txtCant" class="col-form-label">Cantidad Máxima:</label>
+            <input type="number" class="form-control" id="txtCant" name="cantPerm" min="10" max="30" value="<%=item.cantPerm%>">
+          </div>
+          <hr>
+          <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <input type="submit" value="Aceptar" class="btn btn-primary">
+      </div>
+        </form>
+      </div> 
+    </div>
+  </div>
+</div>
+
+
 <%});%>
 </div>
 <!--Modal Agregar-->

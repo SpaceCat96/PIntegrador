@@ -62,5 +62,14 @@ module.exports = {
 		});
 	},
 	delete: function(req,res){
-	}
+		let val_id = req.body.id;
+		model.deleteOne({_id:val_id},function(err){
+			if(err){
+				console.log(err);
+				res.sendStatus(500);
+			}else{
+				res.redirect('/salon/lista');
+			}
+		});
+	},
 };
