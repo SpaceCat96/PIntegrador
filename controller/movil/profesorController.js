@@ -73,8 +73,20 @@ module.exports = {
 			if(err){
 				console.log(err);
 				res.sendStatus(500);
-			}else{		
-				res.json(data);
+			}else{	
+				console.log(data);
+				console.log(data.postulantes.length);
+				var nombres = [];
+				var codigos = [];
+				var jsonObj = [];
+				for (var i = 0; i < data.postulantes.length; i++) {
+					item = {}
+			        item ["nombre"] = data.postulantes[i].p_nombre;
+			        item ["codigo"] = data.postulantes[i].p_codigo;
+
+			        jsonObj.push(item);
+				}
+				res.json(jsonObj);
 			}
 		});
 	},
