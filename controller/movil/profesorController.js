@@ -86,7 +86,11 @@ module.exports = {
 								res.send(items._id);
 						} 
 					});**/
-					res.send(data._id);
+					datos = {
+						'id':data._id
+					}
+
+					res.send(datos);
 				}else{
 					res.send(false);
 				}	
