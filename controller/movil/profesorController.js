@@ -66,6 +66,17 @@ module.exports = {
 			}
 		});
 	},
+	getalumnos:function(req,res){
+		let val_id = req.body.id;
+		grupo.find({profesor_id:val_id},'postulantes').exec(function(err,data){			
+			if(err){
+				console.log(err);
+				res.sendStatus(500);
+			}else{	
+				res.json(data);
+			}
+		});
+	},
 	credenciales: function(req,res){
 		let user = req.body.username;
 		let pass = req.body.password;
