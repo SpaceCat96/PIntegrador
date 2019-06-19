@@ -98,7 +98,6 @@ module.exports = {
 
 				res.send(false);
 			}else{
-				
 				var profe=data._id;
 				var pass_ori = cryptr.decrypt(data.password);
 				if(pass_ori == pass){
