@@ -35,11 +35,7 @@ router.get('/postulante',function(req,res,next){
 });
 
 router.get('/prueba',function(req,res,next){
-	if (req.session.mail) {
 		controller.newgroup(req,res);
-	}else{
-		res.redirect('/');
-	}
 });
 
 module.exports = router;
